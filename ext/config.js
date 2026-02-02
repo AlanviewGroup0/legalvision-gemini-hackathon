@@ -12,7 +12,8 @@
 
 // Server URL configuration
 // This can be overridden by environment variables during build, or edited manually
-const SERVER_URL = 'http://localhost:3000';
+// const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = 'https://legalvision-gemini-hackathon.vercel.app';
 
 // Configuration object
 const config = {
