@@ -70,7 +70,7 @@ function Hero() {
               </a>
             </Button>
             <Button size="lg" className="gap-4" variant="default" asChild>
-              <a href="#how-to-install">
+              <a href="https://github.com/AlanviewGroup0/legalvision-gemini-hackathon" target="_blank" rel="noopener noreferrer">
                 See the code <MoveRight className="w-4 h-4" />
               </a>
             </Button>
