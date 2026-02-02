@@ -1,0 +1,25 @@
+meta {
+  name: Create Analysis Job - Comprehensive
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/analyze
+  body: json
+  auth: none
+}
+
+params:query {
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "url": "https://example.com/terms",
+    "analysisType": "comprehensive"
+  }
+}

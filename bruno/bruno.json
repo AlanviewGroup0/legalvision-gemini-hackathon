@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Legal Vision API",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

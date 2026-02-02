@@ -1,0 +1,66 @@
+# Legal Vision - UI Design System Rule
+
+## CRITICAL: Always Follow the Brutalist UI Design System
+
+When creating or modifying ANY UI components for the Legal Vision extension, you MUST follow the brutalist design system.
+
+### Key Requirements:
+
+1. **Reference the Design System**: Always check `ext/popup.html` before creating or modifying UI components for the canonical implementation.
+
+2. **Design Elements**:
+   - **Brutalist Style**: No border-radius (use `0` or `border-radius: 0`)
+   - **Thick Black Borders**: Use `2px`, `3px`, or `4px solid #000000` depending on component hierarchy
+   - **Box Shadows**: Use brutalist-style shadows like `8px 8px 0px 0px #000000` for containers, `4px 4px 0px 0px #000000` for sections
+   - **Light Backgrounds**: Use `#FFF8E7` for body, `#F0F5FF` for containers, `#FFFFFF` for sections
+   - **Font**: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif`
+
+3. **Color Palette**:
+   - Primary text: `#000000` (black)
+   - Background: `#FFF8E7` (cream/beige)
+   - Container background: `#F0F5FF` (light blue)
+   - Section background: `#FFFFFF` (white)
+   - Active/checked: `#4CAF50` (green)
+   - Button background: `#88aaee` (light blue)
+   - Borders: `#000000` (black, always)
+
+4. **Typography**:
+   - Title: `32px` font-weight `900`, letter-spacing `-0.5px`
+   - Subtitle: `16px` font-weight `600`
+   - Section title: `14px` font-weight `900`, text-transform `uppercase`, letter-spacing `0.5px`
+   - Body: `14px` font-weight `500`
+   - Labels: `14px` font-weight `700`, text-transform `uppercase`, letter-spacing `0.5px`
+
+5. **Spacing**:
+   - Container padding: `32px` for main containers, `16px` for sections
+   - Section margin: `16px` between sections
+   - Consistent margins: `12px` for toggle containers, `8px` for list items
+
+6. **Components**:
+   - **Buttons**: Border `2px solid #000000`, background `#88aaee`, hover effect: `transform: translate(-4px, -4px)` with `box-shadow: 4px 4px 0px 0px #000000`
+   - **Toggle Switches**: Square/rectangular style, `60px` width, `32px` height, `3px solid #000000` border, no border-radius
+   - **Sections**: White background `#FFFFFF`, `3px solid #000000` border, `4px 4px 0px 0px #000000` box-shadow
+   - **Lists**: Square bullets (■), `14px` font size, `1.8` line-height
+
+7. **Dimensions**:
+   - Use fixed pixel values, NOT percentages or viewport units
+   - Popup container: `width: 400px`, `min-width: 400px`, `min-height: 500px`
+   - Body: `min-height: 600px`, `min-width: 400px`
+   - Notification: `width: 360px`, `min-width: 360px`
+   - Side sheet: `width: 480px`, `min-width: 480px`
+
+8. **Components to Update**:
+   - `ext/popup.html` - Extension popup (reference implementation)
+   - `ext/content.js` - Notification components and side sheet
+   - Any future UI components
+
+9. **Before Making Changes**:
+   - Check `ext/popup.html` for the canonical implementation
+   - Ensure all colors, fonts, spacing, borders, and shadows match exactly
+   - Use fixed pixel dimensions, never percentages or viewport units
+   - All borders must be black (`#000000`)
+   - All border-radius must be `0`
+   - Hover effects should use translate transforms with matching box-shadows
+
+### Example Reference:
+See `ext/popup.html` for the complete, canonical implementation of this brutalist design system.

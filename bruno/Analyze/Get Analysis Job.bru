@@ -1,0 +1,41 @@
+meta {
+  name: Get Analysis Job
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{base_url}}/api/analyze/{{job_id}}
+  body: none
+  auth: none
+}
+
+params:query {
+}
+
+headers {
+  Content-Type: application/json
+}
+
+docs {
+  # Get Analysis Job
+
+  Retrieves the status and results of an analysis job.
+
+  ## Path Parameter
+  - `jobId`: The ID of the analysis job (from Create Analysis Job response)
+
+  ## Response
+  Returns the job status, analysis results (if completed), and metadata.
+
+  ## Status Values
+  - `PENDING`: Job is queued but not started
+  - `SCRAPING`: Currently scraping the website
+  - `ANALYZING`: Currently analyzing with Gemini
+  - `COMPLETED`: Analysis complete, results available
+  - `FAILED`: Analysis failed, check errorMessage
+
+  ## Polling
+  Poll this endpoint until status is `COMPLETED` or `FAILED`.
+  Recommended: Poll every 2-5 seconds.
+}

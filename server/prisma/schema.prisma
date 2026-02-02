@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AnalysisJob {
+  id            String         @id @default(cuid())
+  url           String
+  normalizedUrl String // For deduplication
+  status        AnalysisStatus @default(PENDING)
+  analysisType  String         @default("comprehensive")
+
+  // Results
+  scrapedContent Json? // Raw scraped data
+  analysis       Json? // Gemini analysis result
+
+  // Metadata
+  tokensUsed   Int?
+  processingMs Int?
+  errorMessage String?
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  completedAt DateTime?
+
+  // --- T&C Scan (long-running, resumable) ---
+  currentPhase     ScanPhase? // Source of truth for scan progress; when set, job is a scan
+  progressPercent  Int?       // 0-100, approximate
+  earlyFindings    Json?      // Partial results: arbitration, data sharing, auto-renewal, etc.
+  phaseTimestamps  Json?      // { "SCAN_CREATED": "ISO8601", ... } per phase
+  contentHash      String?    // For cache/dedup by content
+  idempotencyKey   String?    @unique // page URL + document URLs + content hash → same scan_id
+  lastCompletedPhase String?  // For failure reporting: last phase that finished
+
+  @@index([normalizedUrl])
+  @@index([status])
+  @@index([createdAt])
+  @@index([idempotencyKey])
+  @@index([contentHash])
+}
+
+enum AnalysisStatus {
+  PENDING
+  SCRAPING
+  ANALYZING
+  COMPLETED
+  FAILED
+}
+
+// T&C scan phases: forward-only, resumable, with timestamps per phase
+enum ScanPhase {
+  SCAN_CREATED
+  TERMS_DISCOVERED
+  DOCUMENT_FETCHED
+  NORMALIZED
+  ANALYZING
+  SUMMARIZING
+  COMPLETE
+  FAILED
+}

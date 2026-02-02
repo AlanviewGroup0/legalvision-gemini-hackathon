@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Vision</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #FFF8E7;
+            margin: 0;
+            padding: 0;
+            min-height: 600px;
+            min-width: 400px;
+        }
+
+        .popup-container {
+            background: #F0F5FF;
+            border: 4px solid #000000;
+            border-radius: 0;
+            padding: 32px;
+            width: 400px;
+            min-width: 400px;
+            min-height: 500px;
+            box-shadow: 8px 8px 0px 0px #000000;
+            color: #000000;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: #000000;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .section {
+            background: #FFFFFF;
+            border: 3px solid #000000;
+            border-radius: 0;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .toggle-container:last-child {
+            margin-bottom: 0;
+        }
+
+        .toggle-label {
+            font-weight: 700;
+            font-size: 14px;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 32px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #E0E0E0;
+            border: 3px solid #000000;
+            transition: all 0.2s;
+            border-radius: 0;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 2px;
+            top: 2px;
+            background-color: #000000;
+            transition: all 0.2s;
+            border-radius: 0;
+        }
+
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(28px);
+        }
+
+        .slider:active {
+            box-shadow: 2px 2px 0px 0px #000000;
+        }
+
+        .section-title {
+            font-weight: 900;
+            font-size: 14px;
+            margin-bottom: 12px;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .how-it-works-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .how-it-works-list li {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #000000;
+            margin-bottom: 10px;
+            padding-left: 24px;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .how-it-works-list li:before {
+            content: "■";
+            position: absolute;
+            left: 0;
+            color: #000000;
+            font-weight: 900;
+            font-size: 12px;
+        }
+
+        .how-it-works-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Button Component - Variant 2 (Reverse) */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+            outline: none;
+            border: 2px solid #000000;
+            background-color: #88aaee;
+            color: #000000;
+            height: 40px;
+            padding: 0 16px;
+            box-shadow: none;
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid #000000;
+            outline-offset: 2px;
+        }
+
+        .btn:disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .btn:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+
+        .btn:active {
+            transform: translate(0, 0);
+            box-shadow: none;
+        }
+
+        .button-container {
+            margin-top: 16px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup-container">
+        <div class="header">
+            <div class="title">Legal Vision</div>
+            <div class="subtitle">Informed Consent Detection</div>
+        </div>
+
+        <div class="section">
+            <div class="toggle-container">
+                <span class="toggle-label">Active</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="toggle-container">
+                <span class="toggle-label">Pause on this site</span>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">How it works:</div>
+            <ul class="how-it-works-list">
+                <li>Automatically detects consent moments on web pages</li>
+                <li>Identifies consent buttons and legal terms</li>
+                <li>Helps you understand what you're agreeing to</li>
+                <li>Encourages informed decision-making</li>
+            </ul>
+        </div>
+
+        <div class="button-container">
+            <button class="btn">Learn More</button>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

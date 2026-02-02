@@ -1,0 +1,22 @@
+meta {
+  name: List Analyses - By URL
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{base_url}}/api/analyze
+  body: none
+  auth: none
+}
+
+params:query {
+  limit: 20
+  status: 
+  url: https://example.com/terms
+  cursor: 
+}
+
+headers {
+  Content-Type: application/json
+}

@@ -1,0 +1,50 @@
+meta {
+  name: Get Analysis Job
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/api/analyze/{{jobId}}
+  body: none
+  auth: none
+}
+
+params:query {
+}
+
+params:path {
+  jobId: clx1234567890abcdef
+}
+
+headers {
+  Content-Type: application/json
+}
+
+docs {
+  # Get Analysis Job
+
+  Retrieves the status and results of an analysis job.
+
+  ## Path Parameters
+  - `jobId` (required): The job ID returned from creating an analysis job
+
+  ## Response
+  Returns job details including:
+  - `id`: Job ID
+  - `url`: Original URL analyzed
+  - `status`: Current status (PENDING, SCRAPING, ANALYZING, COMPLETED, FAILED)
+  - `analysis`: Analysis results (null if not completed)
+  - `metadata`: Processing metadata
+    - `tokensUsed`: Number of tokens used
+    - `processingMs`: Processing time in milliseconds
+    - `createdAt`: Job creation timestamp
+    - `completedAt`: Job completion timestamp (null if not completed)
+
+  ## Status Values
+  - `PENDING`: Job is queued, waiting to be processed
+  - `SCRAPING`: Currently scraping the website
+  - `ANALYZING`: Currently analyzing with Gemini
+  - `COMPLETED`: Analysis completed successfully
+  - `FAILED`: Analysis failed (check error message)
+}

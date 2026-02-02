@@ -1,0 +1,43 @@
+{
+    "manifest_version": 3,
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2QaSD68SvefZkb/FxW6vDv6fGMUY0cH+UiLZRS5Y5OW8ZnMKJVgcG8flthYRUMhTePgNh8tawtaLmz/ScyzPBxqPLuFizu4RRE83cLs0cNej2AytHOwwVNoi4oIsyoD9P0LQO3uRBbXpVFF7EjgC1oFtk5bxb6gPyo2BcPBxRi00fF4Lotf04jjWZXGO8QaYMuwecE0k9Uccd+xwobexBxlt8X3iBtosc0YEtJlHIWhlwUVjeIxdhDxsYwyCo9C1ZKITVcWBnp4SMfCD+4/UyWm/ZVf+38S5ytLCqfKUbvKANilHE5Dik80sY9enBOT8WKLT1IKGOz8Mc/d7Z8w37wIDAQAB",
+    "trial_tokens": [
+        "Asn8hkU6n3P41YAHGHvlTCHtLOqYPFMS127t+yaTHOdZzRmWstJA41ecLxhLJayGgAOv2ejC/YHj7jQhevXYUwsAAAB7eyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8vaGFtYnBpaG1ha2VsaWltZ2VtZGdoZmxqYm5jaWhlaW8iLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElNdWx0aW1vZGFsSW5wdXQiLCJleHBpcnkiOjE3ODE1NjgwMDB9"
+    ],
+    "name": "Legal Vision - Gemini Hackathon Project",
+    "description": "See what you're actually agreeing to at the moment of consent.",
+    "version": "1.0.0",
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "32": "icons/icon32.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "tabs"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "background": {
+        "service_worker": "background.js",
+        "type": "module"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "config.js",
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ]
+}

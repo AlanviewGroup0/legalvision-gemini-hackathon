@@ -1,0 +1,54 @@
+meta {
+  name: Create Analysis Job
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/analyze
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "url": "https://example.com/terms",
+    "analysisType": "comprehensive"
+  }
+}
+
+params:query {
+}
+
+headers {
+  Content-Type: application/json
+}
+
+docs {
+  # Create Analysis Job
+
+  Creates a new analysis job for a given URL. The server will:
+  1. Check for cached results (within 24 hours)
+  2. Create a new job if no cache exists
+  3. Queue the job for processing
+  4. Return the job ID and status URL
+
+  ## Request Body
+  - `url` (required): The URL to analyze (max 2048 chars)
+  - `analysisType` (optional): Type of analysis. Options:
+    - `comprehensive` (default)
+    - `seo`
+    - `content`
+    - `technical`
+
+  ## Response
+  Returns 202 Accepted with:
+  - `jobId`: ID to check job status
+  - `status`: Current status (PENDING)
+  - `statusUrl`: URL to check job status
+
+  ## Example URLs to test:
+  - https://www.apple.com/legal/internet-services/terms/site.html
+  - https://policies.google.com/terms
+  - https://www.spotify.com/us/legal/end-user-agreement/
+}

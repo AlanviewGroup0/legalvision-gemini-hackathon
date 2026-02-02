@@ -1,0 +1,43 @@
+meta {
+  name: List Analyses
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{base_url}}/api/analyze
+  body: none
+  auth: none
+}
+
+params:query {
+  limit: 20
+  status: 
+  url: 
+  cursor: 
+}
+
+headers {
+  Content-Type: application/json
+}
+
+docs {
+  # List Analyses
+
+  Lists analysis jobs with optional filtering and pagination.
+
+  ## Query Parameters
+  - `limit` (optional): Number of results per page (1-100, default: 20)
+  - `status` (optional): Filter by status
+    - `PENDING`
+    - `SCRAPING`
+    - `ANALYZING`
+    - `COMPLETED`
+    - `FAILED`
+  - `url` (optional): Filter by exact URL match
+  - `cursor` (optional): Pagination cursor (from previous response's `nextCursor`)
+
+  ## Pagination
+  Use the `nextCursor` from the response to fetch the next page.
+  Pass it as the `cursor` query parameter.
+}
