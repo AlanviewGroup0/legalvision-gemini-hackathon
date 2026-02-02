@@ -15,7 +15,7 @@ export default function HowToInstall() {
       title: "Download the ZIP",
       description: "Get the extension package file",
       videoPlaceholder: true,
-      buttonLink: "#", // Will be updated later
+      buttonLink: "https://github.com/AlanviewGroup0/legalvision-gemini-hackathon/releases/tag/V0.1",
       buttonText: "Download"
     },
     {
