@@ -1,0 +1,124 @@
+---
+description: Web Design System — spacing (8px grid), typography, color, responsive layout, accessibility, and component patterns. All designs in this project must follow this.
+alwaysApply: true
+---
+
+# Web Design System Rules for This Project
+
+All designs in this project must follow this system. Balance creative excellence with technical constraints. Every design decision must have a purpose.
+
+---
+
+## 1. SPACING & LAYOUT — 8-Pixel Grid (MANDATORY)
+
+**All spacing, sizing, and layout values MUST be divisible by 8.**
+
+- **Use for:** `margin`, `padding`, `gap`, `grid-gap`, `border-radius`, fixed `width`/`height`
+- **Values:** 8, 16, 24, 32, 40, 48, 64, 80, 96, 120 (px)
+- **Font sizes:** 12, 14, 16, 18, 20, 24, 28, 32, 40, 48, 56, 64, 72 (px)
+- **Exceptions:** 1px, 2px, 4px for fine-tuning; percentages; vh/vw
+
+**CSS variables to use:**
+```css
+--spacing-xs: 8px; --spacing-sm: 16px; --spacing-md: 24px; --spacing-lg: 32px;
+--spacing-xl: 48px; --spacing-2xl: 64px; --spacing-3xl: 80px; --spacing-4xl: 96px; --spacing-5xl: 120px;
+```
+
+**Wrong:** `padding: 25px; gap: 15px; border-radius: 6px;`  
+**Right:** `padding: 24px; gap: 16px; border-radius: 8px;`
+
+---
+
+## 2. RESPONSIVE DESIGN
+
+- **Mobile first.** Default = mobile (375px–767px). No media query for base.
+- **Breakpoints:** `768px` (tablet), `1024px` (desktop), `1440px` (large), `1920px` (XL).
+- **Container:** `max-width: 1440px`, `margin: 0 auto`. Padding: 16px mobile → 32px tablet → 48px desktop.
+- **Grid columns:** 4 (mobile) → 8 (tablet) → 12 (desktop). Gaps: 16px → 24px → 32px.
+
+---
+
+## 3. COLOR SYSTEM
+
+- Use CSS variables for all colors. Define: primary, secondary, accent, neutrals (gray-50…gray-900), semantic (success, error, warning, info).
+- **Text:** Prefer opacity on a single base (e.g. `--text-base` with opacity 1, 0.7, 0.5, 0.3 for primary/secondary/tertiary/disabled).
+- **Contrast (MANDATORY):** WCAG AA — normal text 4.5:1, large text/UI 3:1. Never use low-contrast text on colored backgrounds.
+
+---
+
+## 4. TYPOGRAPHY
+
+- **Body text:** Minimum 16px. Never smaller for body.
+- **Scale:** Use 8px-based sizes (12–72px). Prefer variables: `--text-xs` through `--text-9xl`.
+- **Weights:** 300–900; use variables. Line heights: none, tight, snug, normal, relaxed, loose.
+- **Headings:** h1 48px+, h2 32px+, h3 24px+. Tight line-height; optional negative letter-spacing for large text.
+- **Don’ts:** No body below 16px; no center-aligned paragraphs; max 1–2 font families.
+- **Uppercase:** Use increased letter-spacing (e.g. 0.05em). Prose max-width ~65ch for readability.
+
+---
+
+## 5. COMPONENTS
+
+- **Buttons:** 8px grid padding (e.g. 12px 24px), border-radius 8px, min touch target 44×44px. Variants: primary, secondary (border), tertiary (text). Always :hover and :focus-visible.
+- **Inputs:** Height ≥48px, padding 12px 16px, border 2px, border-radius 8px. Focus: border + box-shadow. Labels: block, medium weight, 8px margin below.
+- **Cards:** Padding 24px, border-radius 16px, subtle shadow. Hover: slight lift + stronger shadow. Use BEM-style naming where applicable.
+
+---
+
+## 6. LAYOUT PATTERNS
+
+- **Hero:** Min-height 80vh (60vh mobile), padding 80px/48px, centered content. Title large (e.g. 64px → 40px mobile), subtitle 20px/16px.
+- **Sections:** Padding 80px/48px vertical (small 48px, large 120px). Section titles centered, margin-bottom 48px.
+
+---
+
+## 7. ANIMATIONS & INTERACTIONS
+
+- **Durations:** Micro 150–300ms; page 300–500ms. Never >500ms unless intentional.
+- **Easing:** Use variables (e.g. ease-in-out, ease-out).
+- **Prefer:** `transform` and `opacity`. Avoid animating width/height/margin when possible.
+- **Respect:** `@media (prefers-reduced-motion: reduce)` — disable or shorten animations.
+
+---
+
+## 8. ACCESSIBILITY (MANDATORY)
+
+- **Focus:** Visible focus on all interactive elements (`:focus-visible`), e.g. 2px outline + offset. Never remove focus without a replacement.
+- **Skip link:** Provide “Skip to content” (visible on focus).
+- **Touch targets:** Minimum 44×44px for tap/click areas.
+- **Semantic HTML:** Use `<nav>`, `<main>`, `<article>`, `<section>`, `<aside>`, `<footer>`. Heading order: h1 → h2 → h3 (no skips).
+- **Images:** Meaningful `alt` text; `alt=""` for decorative only.
+- **Buttons/controls:** Visible text or `aria-label`.
+
+---
+
+## 9. PERFORMANCE
+
+- **Images:** `loading="lazy"`, responsive `srcset`/`sizes`, modern formats (e.g. WebP) where possible. Use `object-fit` for aspect ratio.
+- **CSS:** Prefer `transform`/`opacity` for animations. Use `contain` where it helps. Use `will-change` sparingly and remove after animation.
+
+---
+
+## 10. COMMON MISTAKES TO AVOID
+
+- Body text below 16px.
+- Spacing/sizing not on 8px grid (e.g. 15px, 25px).
+- Poor contrast (e.g. gray on gray below 4.5:1).
+- More than 2 font families.
+- Center-aligned body text.
+- Missing hover/focus on buttons/links.
+- Fixed widths without responsive behavior.
+- Images without alt.
+- Animations without respecting `prefers-reduced-motion`.
+
+---
+
+## 11. DESIGN CHECKLIST (before deploy)
+
+- [ ] Spacing follows 8px grid; typography uses scale; colors from variables.
+- [ ] All breakpoints and touch targets (44×44px) considered; no horizontal scroll on mobile.
+- [ ] Contrast WCAG AA; heading hierarchy; focus visible; keyboard nav; labels on inputs.
+- [ ] Images optimized and lazy-loaded; animations use transform/opacity; reduced-motion respected.
+- [ ] Links/forms/buttons work; hover/active/focus states and loading/error states in place.
+
+Creativity within constraints. When editing CSS, Astro components, or UI in this project, apply this system consistently.

@@ -6,23 +6,20 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-base text-sm font-base ring-offset-white transition-all gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-none text-base font-medium min-h-[44px] min-w-[44px] ring-offset-brutal-section transition-transform duration-150 ease-out gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brutal-border focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "text-mtext bg-main border-2 border-border shadow-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none",
-        noShadow: "text-mtext bg-main border-2 border-border",
+          "text-brutal-text bg-brutal-button border-2 border-brutal-border hover:-translate-x-1 hover:-translate-y-1 hover:shadow-brutal-button",
         neutral:
-          "bg-bw text-text border-2 border-border shadow-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none",
-        reverse:
-          "text-mtext bg-main border-2 border-border hover:translate-x-reverseBoxShadowX hover:translate-y-reverseBoxShadowY hover:shadow-shadow",
+          "text-brutal-text bg-brutal-section border-2 border-brutal-border hover:-translate-x-1 hover:-translate-y-1 hover:shadow-brutal-button",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 px-3",
-        lg: "h-11 px-8",
-        icon: "h-10 w-10",
+        default: "h-11 px-6 py-3",
+        sm: "h-11 px-4 py-2 min-w-0",
+        lg: "h-12 px-8 py-3",
+        icon: "h-11 w-11 p-0",
       },
     },
     defaultVariants: {

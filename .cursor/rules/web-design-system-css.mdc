@@ -1,0 +1,83 @@
+---
+description: Web Design System — CSS implementation (variables, breakpoints, BEM, components). Use when editing styles or global.css.
+globs: "**/*.css"
+alwaysApply: false
+---
+
+# Web Design System — CSS Implementation
+
+When editing CSS in this project, follow these implementation details. See `web-design-system.mdc` for full design rules.
+
+---
+
+## Variables to Define / Use
+
+**Spacing (8px grid):**
+```css
+--spacing-xs: 8px; --spacing-sm: 16px; --spacing-md: 24px; --spacing-lg: 32px;
+--spacing-xl: 48px; --spacing-2xl: 64px; --spacing-3xl: 80px; --spacing-4xl: 96px; --spacing-5xl: 120px;
+```
+
+**Breakpoints (mobile first):**
+- Base: 375px–767px (no media query)
+- `@media (min-width: 768px)` — tablet
+- `@media (min-width: 1024px)` — desktop
+- `@media (min-width: 1440px)` — large desktop
+- `@media (min-width: 1920px)` — XL
+
+**Container:**
+- `max-width: 1440px; margin: 0 auto;`
+- Padding: 16px → 32px @768px → 48px @1024px
+
+**Typography scale (8px-based):**
+- Sizes: 12, 14, 16, 18, 20, 24, 28, 32, 40, 48, 56, 64, 72 (px)
+- Weights: 300, 400, 500, 600, 700, 900
+- Line heights: 1, 1.25, 1.375, 1.5, 1.625, 2
+
+**Easing:**
+```css
+--ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+--ease-out: cubic-bezier(0.0, 0, 0.2, 1);
+```
+Micro-interactions: 150–300ms. Never >500ms unless intentional.
+
+---
+
+## BEM Naming
+
+- Block: `.card`
+- Element: `.card__title`, `.card__image`
+- Modifier: `.card--featured`, `.button--primary`
+
+---
+
+## Focus & Accessibility
+
+- All interactive elements: visible `:focus-visible` (e.g. 2px outline + 2px offset).
+- Skip link: `position: absolute; top: -40px;` then `top: 0` on `:focus`.
+- Touch targets: `min-width: 44px; min-height: 44px` for tap areas.
+
+---
+
+## Reduced Motion
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+---
+
+## Performance
+
+- Prefer `transform` and `opacity` for transitions/animations.
+- Avoid animating `width`, `height`, `margin` when possible.
+- Use `contain: layout style paint` on isolated components where appropriate.
+- Use `will-change` sparingly and remove after animation.
+
+All new or edited CSS must use 8px grid values and the project’s design tokens (see `src/styles/global.css`).

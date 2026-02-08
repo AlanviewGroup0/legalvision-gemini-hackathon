@@ -2,99 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Legal Vision brutalist design system + 8px grid (web-design-system) */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%; 
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
+    /* Brutalist palette */
+    --bg-body: #FFF8E7;
+    --bg-container: #F0F5FF;
+    --bg-section: #FFFFFF;
+    --text-primary: #000000;
+    --button-bg: #88aaee;
+    --active: #4CAF50;
+    --border: #000000;
 
-    /* New button component variables */
-    --main: #88aaee;
-    --overlay: rgba(0, 0, 0, 0.8);
-    --bg: #dfe5f2;
-    --bw: #fff;
-    --blank: #000;
-    --border: #000;
-    --text: #000;
-    --mtext: #000;
-    --ring: #000;
-    --ring-offset: #fff;
-    --border-radius: 5px;
-    --box-shadow-x: 4px;
-    --box-shadow-y: 4px;
-    --reverse-box-shadow-x: -4px;
-    --reverse-box-shadow-y: -4px;
-    --base-font-weight: 500;
-    --heading-font-weight: 700;
-    --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
-  }
+    /* 8px grid spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    --spacing-2xl: 64px;
+    --spacing-3xl: 80px;
+    --spacing-4xl: 96px;
+    --spacing-5xl: 120px;
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    /* Brutalist shadows */
+    --shadow-container: 8px 8px 0px 0px var(--border);
+    --shadow-section: 4px 4px 0px 0px var(--border);
+    --shadow-button-hover: 4px 4px 0px 0px var(--border);
 
-    /* Dark mode button variables */
-    --bg: #272933;
-    --bw: #212121;
-    --blank: #fff;
-    --border: #000;
-    --text: #e6e6e6;
-    --mtext: #000;
-    --ring: #fff;
-    --ring-offset: #000;
-    --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+    /* Typography scale (8px-based, body min 16px) */
+    --text-xs: 12px;
+    --text-sm: 14px;
+    --text-base: 16px;
+    --text-lg: 18px;
+    --text-xl: 20px;
+    --text-2xl: 24px;
+    --text-3xl: 32px;
+    --text-4xl: 40px;
+    --text-5xl: 48px;
+    --text-6xl: 56px;
+    --text-7xl: 64px;
+
+    /* Button / component (brutalist: no radius) */
+    --radius: 0;
+    --border-thin: 2px solid var(--border);
+    --border-thick: 3px solid var(--border);
+    --border-container: 4px solid var(--border);
+
+    /* Animations (150–300ms, respect reduced motion) */
+    --duration-micro: 150ms;
+    --duration-page: 300ms;
+    --ease: ease-out;
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    box-sizing: border-box;
   }
+
   html {
     scroll-behavior: smooth;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   body {
-    @apply bg-background text-foreground;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    min-height: 100vh;
+    background: var(--bg-body);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, sans-serif;
+    font-size: var(--text-base);
+    font-weight: 500;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    letter-spacing: normal !important;
+  }
+
+  /* Skip link (accessibility) */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--spacing-sm);
+    z-index: 100;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--bg-section);
+    color: var(--text-primary);
+    border: var(--border-thin);
+    font-size: var(--text-base);
+    font-weight: 600;
+    text-decoration: none;
+    transition: top var(--duration-micro) var(--ease);
+  }
+
+  .skip-link:focus {
+    top: var(--spacing-sm);
+    outline: 2px solid var(--border);
+    outline-offset: 2px;
   }
 }
